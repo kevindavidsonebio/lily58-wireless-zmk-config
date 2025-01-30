@@ -22,8 +22,8 @@
 
         combo_soft_off {
             bindings = <&soft_off>;
-            key-positions = <0 53 49 54>;
-            layers = <3>;
+            key-positions = <0 53 54 11>;
+            layers = <0>;
         };
     };
 
