@@ -93,7 +93,7 @@
                      &none  &none  &none           &none         &none       &out OUT_TOG  &out OUT_USB  &out OUT_BLE
             >;
 
-            label = "config";
+            label = "Config";
         };
     };
 };
