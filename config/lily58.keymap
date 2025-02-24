@@ -10,30 +10,10 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
 
-&soft_off {
-    hold-time-ms = <5000>;
-
-    /delete-property/ split-peripheral-off-on-press;
-};
-
 / {
     combos { compatible = "zmk,combos"; };
 
     behaviors {
-        td_ctrl_select_all: td_ctrl_select_all {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_CTRL_SELECT_ALL";
-            #binding-cells = <0>;
-            bindings = <&kp LCTRL>, <&kp LC(A)>;
-        };
-
-        td_shift_alt_copy_and_paste: td_shift_alt_copy_and_paste {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_SHIFT_ALT_COPY_AND_PASTE";
-            #binding-cells = <0>;
-            bindings = <&kp LS(LC(V))>, <&kp LS(LC(C))>;
-        };
-
         td_ctrl_shift_alt: td_ctrl_shift_alt {
             compatible = "zmk,behavior-tap-dance";
             label = "TD_CTRL_SHIFT_ALT";
@@ -58,8 +38,8 @@
 &kp ESC             &kp N1  &kp N2  &kp N3  &kp N4        &kp N5                                                             &kp N6         &kp N7  &kp N8               &kp N9           &kp N0               &mt LS(EQUAL) EQUAL
 &kp TAB             &kp Q   &kp W   &kp E   &kp R         &kp T                                                              &kp Y          &kp U   &kp I                &kp O            &kp P                &mt LS(MINUS) MINUS
 &td_ctrl_shift_alt  &kp A   &kp S   &kp D   &kp F         &kp G                                                              &kp H          &kp J   &kp K                &kp L            &mt LS(SEMI) SEMI    &mt LS(SQT) SQT
-&kp LSHFT           &kp Z   &kp X   &kp C   &kp V         &kp B     &mt LS(LBKT) LEFT_BRACKET    &mt LS(RBKT) RIGHT_BRACKET  &kp N          &kp M   &mt LS(COMMA) COMMA  &mt LS(DOT) DOT  &mt LS(SLASH) SLASH  &lt 3 CAPS
-                                    &none   &kp LEFT_ALT  &kp LGUI  &lt 1 SPACE                  &lt 2 ENTER                 &kp BACKSPACE  &none   &none
+&kp LSHFT           &kp Z   &kp X   &kp C   &kp V         &kp B     &mt LS(LBKT) LEFT_BRACKET    &mt LS(RBKT) RIGHT_BRACKET  &kp N          &kp M   &mt LS(COMMA) COMMA  &mt LS(DOT) DOT  &mt LS(SLASH) SLASH  &kp CAPS
+                                    &none   &kp LEFT_ALT  &kp LGUI  &lt 1 SPACE                  &lt 2 ENTER                 &kp BACKSPACE  &mo 3   &kp LG(EQUAL)
             >;
         };
 
@@ -73,11 +53,11 @@
 
             display-name = "Lower";
             bindings = <
-&none      &none      &none     &none      &none       &none                                                     &none      &none       &none      &none      &kp LS(EQUAL)  &kp DELETE
-&kp GRAVE  &kp CARET  &kp AMPS  &kp STAR   &kp LPAR    &kp RPAR                                                  &none      &kp KP_N7   &kp KP_N8  &kp KP_N9  &kp MINUS      &none
-&kp TILDE  &kp EXCL   &kp AT    &kp HASH   &kp DOLLAR  &kp PRCNT                                                 &none      &kp KP_N4   &kp KP_N5  &kp KP_N6  &kp ASTERISK   &none
-&kp PIPE   &kp LBRC   &kp RBRC  &kp EQUAL  &kp PLUS    &kp MINUS  &td_shift_alt_copy_and_paste    &kp LS(LC(V))  &none      &kp KP_N1   &kp KP_N2  &kp KP_N3  &kp SLASH      &none
-                                &none      &none       &none      &none                           &none          &kp KP_N0  &kp PERIOD  &none
+&none      &none      &none     &none      &none       &none                      &none      &none       &none      &none      &kp LS(EQUAL)  &kp DELETE
+&kp GRAVE  &kp CARET  &kp AMPS  &kp STAR   &kp LPAR    &kp RPAR                   &none      &kp KP_N7   &kp KP_N8  &kp KP_N9  &kp MINUS      &none
+&kp TILDE  &kp EXCL   &kp AT    &kp HASH   &kp DOLLAR  &kp PRCNT                  &none      &kp KP_N4   &kp KP_N5  &kp KP_N6  &kp ASTERISK   &kp LC(X)
+&kp PIPE   &kp LBRC   &kp RBRC  &kp EQUAL  &kp PLUS    &kp MINUS  &none    &none  &none      &kp KP_N1   &kp KP_N2  &kp KP_N3  &kp SLASH      &kp LC(Z)
+                                &none      &none       &none      &none    &none  &kp KP_N0  &kp PERIOD  &none
             >;
         };
 
@@ -101,11 +81,11 @@
 
         config_layer {
             bindings = <
-&none  &none      &none      &none  &none  &bt BT_DISC 0                             &bt BT_SEL 0  &none         &none         &none  &none  &none
-&none  &none      &none      &none  &none  &bt BT_DISC 1                             &bt BT_SEL 1  &none         &none         &none  &none  &none
-&none  &kp LC(A)  &none      &none  &none  &bt BT_DISC 2                             &bt BT_SEL 2  &none         &none         &none  &none  &none
-&none  &kp LC(Z)  &kp LC(X)  &none  &none  &bt BT_CLR_ALL  &bt BT_PRV    &bt BT_NXT  &bt BT_CLR    &none         &none         &none  &none  &none
-                             &none  &none  &none           &none         &none       &out OUT_TOG  &out OUT_USB  &out OUT_BLE
+&out OUT_USB  &none         &none         &none         &none         &none                         &none  &none  &none  &none  &none  &none
+&out OUT_BLE  &none         &none         &none         &none         &none                         &none  &none  &none  &none  &none  &none
+&out OUT_TOG  &none         &none         &none         &none         &none                         &none  &none  &none  &none  &none  &none
+&bt BT_CLR    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &none    &none  &none  &none  &none  &none  &none  &none
+                                          &none         &none         &none         &none    &none  &none  &none  &none
             >;
 
             label = "Config";
